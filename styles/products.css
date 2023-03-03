@@ -1,0 +1,32 @@
+#products {
+  padding: 2rem 0;
+}
+
+#products .container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 5rem 2rem;
+}
+
+.products__product-card {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.products__product-card .card__info {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+
+.products__product-card .card__info--name {
+  font-size: 1.5rem;
+  color: #444;
+}
+
+.products__product-card .card__info--price {
+  font-size: 1.6rem;
+  margin-bottom: 1rem;
+  margin-left: 1rem;
+}

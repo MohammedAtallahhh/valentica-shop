@@ -1,13 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite App</title>
-  </head>
-  <body>
-    <div id="app"></div>
-    <script type="module" src="/main.js"></script>
-  </body>
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Valentica</title>
+</head>
+
+<body>
+  <header id="header">
+    <div class="container">
+
+      <div class="header__logo">
+        <h2>Valentica.</h2>
+      </div>
+
+      <nav class="header__nav">
+        <div class="header__nav__cart">
+          <!-- Cart icon -->
+          <div class="cart__label">
+            <div class="icon">
+              <img src="/cart.png" alt="cart image" class="cart-icon">
+              <div class="count"></div>
+            </div>
+            <!-- Cart label -->
+            <span class="text">
+              Cart <img class="down-arrow" src="/down-arrow.png" alt="down arrow">
+            </span>
+          </div>
+
+
+          <!-- Cart dropdown -->
+          <div class="cart__dropdown">
+            <div class="products"></div>
+          </div>
+        </div>
+    </div>
+    </nav>
+    </div>
+  </header>
+
+  <section id="products">
+    <div class="container"></div>
+  </section>
+
+  <script type="module" src="/script/main.js"></script>
+</body>
+
 </html>
