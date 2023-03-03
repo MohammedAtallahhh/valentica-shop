@@ -1,7 +1,10 @@
+import { addToCart } from "./cart.js";
+
 export const setupModal = (
   productsContainer,
   productDetailsModal,
-  products
+  products,
+  cart
 ) => {
   const modalInner = productDetailsModal.querySelector(".modal__inner");
   let isOpen = false;
@@ -20,16 +23,23 @@ export const setupModal = (
         <div class='product__info'>
             <h3>${name}</h3>
             <h4>${price}</h4>
-            <button class='btn btn-primary'>Add to cart</button>
+            <button class='btn btn-primary add-to-cart'>Add to cart</button>
         </div>
           `;
 
       const closeBtn = productDetailsModal.querySelector(".close-btn");
+      const addToCartBtn = productDetailsModal.querySelector(".add-to-cart");
+
       productDetailsModal.classList.add("open");
       isOpen = true;
+
       closeBtn.addEventListener("click", () => {
         productDetailsModal.classList.remove("open");
         isOpen = false;
+      });
+
+      addToCartBtn.addEventListener("click", () => {
+        addToCart(id, products, cart);
       });
     }
   };

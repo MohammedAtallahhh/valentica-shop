@@ -1,5 +1,5 @@
 #products {
-  padding: 2rem 0;
+  padding: 4rem 0 10rem;
 }
 
 #products .container {
@@ -33,4 +33,8 @@
 .products__product-card .card__info .btns {
   display: flex;
   justify-content: space-between;
+}
+
+.remove-from-cart {
+  color: rgb(252, 57, 57);
 }

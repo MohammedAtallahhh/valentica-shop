@@ -9,13 +9,15 @@ import { setupModal } from "./productModal";
 
 const productsContainer = document.querySelector("#products .container");
 const cart = document.querySelector(".header__nav__cart");
-const badge = cart.querySelector(".count");
 const productDetailsModal = document.querySelector(".product-details__modal");
 
-const productCardsHtml = products
-  .map(
-    ({ id, name, image, price }) =>
-      `
+export const renderProducts = () => {
+  const currentProducts =
+    JSON.parse(localStorage.getItem("products")) || products;
+  const productCardsHtml = currentProducts
+    .map(
+      ({ id, name, image, price, added_to_cart }) =>
+        `
     <div class='products__product-card'> 
        <div class='card__image'>
             <img src=${image}/> 
@@ -24,15 +26,21 @@ const productCardsHtml = products
             <h3 class='name'>${name}</h3>
             <h4 class='price'>${price} EGP</h4>
             <div class='btns'>
-              <button class='add-to-cart btn btn-primary' data-id=${id}>Add to cart</button> 
+              ${
+                added_to_cart
+                  ? `<button class='remove-from-cart btn btn-secondary' data-id=${id}>Remove from cart</button>`
+                  : `<button class='add-to-cart btn btn-primary' data-id=${id}>Add to cart</button>`
+              }
               <button class='btn btn-secondary quick_view' data-id=${id}>Quick view</button> 
             </div>
         </div> 
     </div>`
-  )
-  .join("");
+    )
+    .join("");
 
-productsContainer.innerHTML = productCardsHtml;
+  productsContainer.innerHTML = productCardsHtml;
+};
 
-setupCart(productsContainer, cart, badge, products);
-setupModal(productsContainer, productDetailsModal, products);
+renderProducts();
+setupCart(productsContainer, cart, products);
+setupModal(productsContainer, productDetailsModal, products, cart);

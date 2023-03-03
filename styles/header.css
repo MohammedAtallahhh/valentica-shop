@@ -78,7 +78,7 @@
   top: calc(100% + 1rem);
   z-index: 1000;
 
-  width: 90vw;
+  width: 85vw;
   max-width: 500px;
 
   background: white;
@@ -98,9 +98,15 @@
 }
 
 .cart__dropdown .products {
-  padding: 2rem;
+  padding: 1rem;
   max-height: 500px;
   overflow-y: auto;
+}
+
+@media (min-width: 768px) {
+  .cart__dropdown .products {
+    padding: 2rem;
+  }
 }
 
 .cart__product {
