@@ -63,41 +63,67 @@ button {
 }
 
 .btn {
+  background: none;
+  border: none;
+  font-size: 1.6rem;
+  font-weight: 600;
+  user-select: none;
+  cursor: pointer;
+}
+
+.btn-primary {
   background-color: #ffffff;
   color: rgba(0, 0, 0, 0.85);
   border: 1px solid rgba(0, 0, 0, 0.2);
   box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
 
-  font-size: 1.6rem;
-  font-weight: 600;
+  padding: 1.2rem 2rem;
   border-radius: 0.25rem;
 
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
+  transition: all 250ms;
+}
 
-  padding: 1.2rem 2rem;
+.btn-primary:hover,
+.btn-primary:focus {
+  border-color: rgba(0, 0, 0, 0.3);
+  box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
+  color: rgba(0, 0, 0, 0.65);
+}
+
+.btn-primary:hover {
+  transform: translateY(-1px);
+}
+
+.btn-primary:active {
+  background-color: #f0f0f1;
+  border-color: rgba(0, 0, 0, 0.15);
+  box-shadow: rgba(0, 0, 0, 0.06) 0 2px 4px;
+  color: rgba(0, 0, 0, 0.65);
+  transform: translateY(0);
+}
+
+.btn-secondary {
+  background: none;
+  color: #444;
+}
+
+.delete-btn {
+  background: none;
+  border: 1px solid rgb(255, 74, 74);
+  color: rgb(255, 74, 74);
+
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
 
   transition: all 250ms;
   user-select: none;
   cursor: pointer;
 }
 
-.btn:hover,
-.btn:focus {
-  border-color: rgba(0, 0, 0, 0.3);
-  box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
-  color: rgba(0, 0, 0, 0.65);
-}
-
-.btn:hover {
-  transform: translateY(-1px);
-}
-
-.btn:active {
-  background-color: #f0f0f1;
-  border-color: rgba(0, 0, 0, 0.15);
-  box-shadow: rgba(0, 0, 0, 0.06) 0 2px 4px;
-  color: rgba(0, 0, 0, 0.65);
-  transform: translateY(0);
+.delete-btn:hover,
+.delete-btn:focus {
+  background: rgb(255, 74, 74);
+  color: white;
+  scale: 1.1;
 }

@@ -1,0 +1,59 @@
+.product-details__modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1500;
+
+  display: flex;
+  justify-content: center;
+
+  background: rgba(0, 0, 0, 0.5);
+  visibility: hidden;
+  opacity: 0;
+
+  transition: 200ms ease;
+}
+
+.product-details__modal.open {
+  visibility: visible;
+  opacity: 1;
+}
+
+.modal__inner {
+  position: relative;
+  background: white;
+
+  border-radius: 1rem;
+  margin: 5rem;
+  padding: 3rem;
+
+  width: 90%;
+  max-width: 900px;
+  height: 600px;
+
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.modal__inner .product__image {
+  max-width: 40rem;
+}
+
+.close-btn {
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  z-index: 50;
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 2.4rem;
+
+  border: 1px solid;
+  cursor: pointer;
+}
