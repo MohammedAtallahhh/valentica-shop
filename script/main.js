@@ -14,6 +14,7 @@ const productDetailsModal = document.querySelector(".product-details__modal");
 export const renderProducts = () => {
   const currentProducts =
     JSON.parse(localStorage.getItem("products")) || products;
+
   const productCardsHtml = currentProducts
     .map(
       ({ id, name, image, price, added_to_cart }) =>
@@ -42,5 +43,5 @@ export const renderProducts = () => {
 };
 
 renderProducts();
-setupCart(productsContainer, cart, products);
-setupModal(productsContainer, productDetailsModal, products, cart);
+setupCart(productsContainer, cart);
+setupModal(productsContainer, productDetailsModal, cart);
