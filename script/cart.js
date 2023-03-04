@@ -128,7 +128,7 @@ const updateCartState = (cart) => {
     : `<div class='empty-cart'>
         <div>
           <img src='https://cdn.dribbble.com/users/357797/screenshots/3998541/empty_box.jpg' alt='Empty cart'/>
-          <h4>Empty Cart, Add some products.</h4>
+          <h4>No products in Cart, Add some.</h4>
         </div>
     </div>`;
 
