@@ -67,7 +67,8 @@ const handleOpenCart = (cart) => {
 
 const handleDeleteFromCart = (e, cart) => {
   if (e.target.closest(".delete-btn")) {
-    const id = +e.target.dataset.id;
+    const id = +e.target.closest(".delete-btn").dataset.id;
+    console.log(e.target);
     removeFromCart(id, cart);
   }
 };
@@ -106,18 +107,20 @@ const updateCartState = (cart) => {
           ({ id, name, image, price, quantity }) =>
             `
       <div class='cart__product'> 
-        <div class='cart__product__image'>
+        <div class='image'>
             <img src=${image}/> 
         </div> 
-          <div class='cart__product__info'>
-              <h3 class='name'>${name}</h3>
-              <h4 class='price'>${price} EGP</h4>
-              <div class='quantity'>
-                <span>Quantity: </span>
-                <input type='number' value='${quantity}' data-id=${id} />
-              </div>
-              </div> 
-              <button class='delete-btn' data-id=${id}>&#x2715</button>
+          <div class='info'>
+            <h3 class='name'>${name}</h3>
+            <h4 class='price'>${price} EGP</h4>
+            <div class='quantity'>
+              <span>Quantity: </span>
+              <input type='number' value='${quantity}' data-id=${id} />
+            </div>
+          </div> 
+            <button class='delete-btn' title='Delete Item' data-id=${id}>
+              <img src='/trash.png' />
+            </button>
       </div>
 `
         )
