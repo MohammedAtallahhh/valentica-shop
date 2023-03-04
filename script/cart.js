@@ -63,6 +63,17 @@ const updateCartBadge = (cart) => {
 const handleOpenCart = (cart) => {
   const dropdown = cart.querySelector(".cart__dropdown");
   dropdown.classList.toggle("open");
+
+  // Close the cart dropdown when clicking outside
+  document.addEventListener("click", (e) => {
+    if (
+      !e.target.closest(".cart__label") &&
+      !e.target.closest(".cart__dropdown") &&
+      dropdown.classList.contains("open")
+    ) {
+      dropdown.classList.toggle("open");
+    }
+  });
 };
 
 const handleDeleteFromCart = (e, cart) => {
