@@ -2,9 +2,10 @@ import { renderProducts } from "./main";
 import { products } from "../productsData";
 
 let cartState = JSON.parse(localStorage.getItem("cart")) || [];
+let currentProducts = JSON.parse(localStorage.getItem("products")) || products;
 
 export const addToCart = (id, cart) => {
-  let product = products.find((p) => p.id === id);
+  let product = currentProducts.find((p) => p.id === id);
   let cartItem = cartState.find((p) => p.id === id);
 
   if (cartItem) {
@@ -13,7 +14,7 @@ export const addToCart = (id, cart) => {
     product.added_to_cart = true;
     cartItem = { ...product, quantity: 1 };
     cartState.push(cartItem);
-    localStorage.setItem("products", JSON.stringify(products));
+    localStorage.setItem("products", JSON.stringify(currentProducts));
     renderProducts();
   }
 
@@ -22,12 +23,12 @@ export const addToCart = (id, cart) => {
 
 export const removeFromCart = (id, cart) => {
   let newCartState = cartState.filter((p) => p.id !== id);
-  const product = products.find((p) => p.id === id);
+  const product = currentProducts.find((p) => p.id === id);
   product.added_to_cart = false;
   cartState = newCartState;
 
   // Save to local storage and update products and cart state
-  localStorage.setItem("products", JSON.stringify(products));
+  localStorage.setItem("products", JSON.stringify(currentProducts));
   renderProducts();
   updateCartState(cart);
 };
@@ -79,12 +80,12 @@ const handleCartQuantity = (e, cart) => {
     let newCartState;
 
     if (value === 0) {
-      newCartState = cartState.filter((p) => p.id !== id);
-      cartState = newCartState;
+      removeFromCart(id, cart);
     } else {
       product.quantity = value;
     }
 
+    localStorage.setItem("products", JSON.stringify(currentProducts));
     updateCartState(cart);
   }
 };
@@ -130,7 +131,7 @@ const updateCartState = (cart) => {
 
   updateCartBadge(cart);
   cartProductsContainer.innerHTML = cartProductsHtml;
-  totalContainer.innerHTML = `Total: ${totalPrice}`;
+  totalContainer.innerHTML = `Total: ${totalPrice} EGP`;
   localStorage.setItem("cart", JSON.stringify(cartState));
 };
 

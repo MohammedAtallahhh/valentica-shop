@@ -19,8 +19,8 @@ export const renderProducts = () => {
     .map(
       ({ id, name, image, price, added_to_cart }) =>
         `
-    <div class='products__product-card'> 
-       <div class='card__image'>
+    <div class='product-card'> 
+       <div class='card__image' data-id=${id}>
             <img src=${image}/> 
        </div> 
         <div class='card__info'>
@@ -29,7 +29,7 @@ export const renderProducts = () => {
             <div class='btns'>
               ${
                 added_to_cart
-                  ? `<button class='remove-from-cart btn btn-secondary' data-id=${id}>Remove from cart</button>`
+                  ? `<button class='remove-from-cart btn btn-danger' data-id=${id}>Remove from cart</button>`
                   : `<button class='add-to-cart btn btn-primary' data-id=${id}>Add to cart</button>`
               }
               <button class='btn btn-secondary quick_view' data-id=${id}>Quick view</button> 
