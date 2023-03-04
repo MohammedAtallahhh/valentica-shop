@@ -65,21 +65,26 @@ const handleOpenCart = (cart) => {
   dropdown.classList.toggle("open");
 
   // Close the cart dropdown when clicking outside
-  document.addEventListener("click", (e) => {
+  const handler = (e) => {
     if (
       !e.target.closest(".cart__label") &&
       !e.target.closest(".cart__dropdown") &&
+      // delete button remove the parent element
+      //so we make sure that deletion doesn't trigger a close
+      !e.target.closest(".delete-btn") &&
       dropdown.classList.contains("open")
     ) {
       dropdown.classList.toggle("open");
+      document.removeEventListener("click", handler);
     }
-  });
+  };
+
+  document.addEventListener("click", handler);
 };
 
 const handleDeleteFromCart = (e, cart) => {
   if (e.target.closest(".delete-btn")) {
     const id = +e.target.closest(".delete-btn").dataset.id;
-    console.log(e.target);
     removeFromCart(id, cart);
   }
 };
