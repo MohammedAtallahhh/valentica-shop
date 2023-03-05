@@ -1,7 +1,7 @@
 import { addToCart, removeFromCart } from "./cart.js";
 import { products } from "../productsData.js";
 
-export const setupModal = (productsContainer, productDetailsModal, cart) => {
+export const setupModal = (productsContainer, productDetailsModal) => {
   const modalInner = productDetailsModal.querySelector(".modal__inner");
 
   const handleQuickView = (e) => {
@@ -18,7 +18,6 @@ export const setupModal = (productsContainer, productDetailsModal, cart) => {
     // Getting the current state of products
     const currentProducts =
       JSON.parse(localStorage.getItem("products")) || products;
-
     const product = currentProducts.find((p) => p.id === id);
 
     // Popualte the modal with the product data
@@ -71,15 +70,15 @@ export const setupModal = (productsContainer, productDetailsModal, cart) => {
     const button = e.target;
     const id = +button.dataset.id;
 
+    // Getting the current state of products
     const currentProducts =
       JSON.parse(localStorage.getItem("products")) || products;
-
     const product = currentProducts.find((p) => p.id === id);
 
     if (product.added_to_cart) {
-      removeFromCart(id, cart);
+      removeFromCart(id);
     } else {
-      addToCart(id, cart);
+      addToCart(id);
     }
 
     // Toggle the added_to_cart property

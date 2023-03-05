@@ -1,10 +1,12 @@
 import { renderProducts } from "./main";
 import { products } from "../productsData";
 
+import { cart } from "./main";
+
 let cartState = JSON.parse(localStorage.getItem("cart")) || [];
 let currentProducts = JSON.parse(localStorage.getItem("products")) || products;
 
-export const addToCart = (id, cart) => {
+export const addToCart = (id) => {
   let product = currentProducts.find((p) => p.id === id);
   let cartItem = cartState.find((p) => p.id === id);
 
@@ -21,7 +23,7 @@ export const addToCart = (id, cart) => {
   updateCartState(cart);
 };
 
-export const removeFromCart = (id, cart) => {
+export const removeFromCart = (id) => {
   let newCartState = cartState.filter((p) => p.id !== id);
   const product = currentProducts.find((p) => p.id === id);
   product.added_to_cart = false;
@@ -33,7 +35,7 @@ export const removeFromCart = (id, cart) => {
   updateCartState(cart);
 };
 
-const handleAddToCart = (e, cart) => {
+const handleAddToCart = (e) => {
   const add = e.target.closest(".add-to-cart");
   const remove = e.target.closest(".remove-from-cart");
   if (add) {
@@ -48,7 +50,7 @@ const handleAddToCart = (e, cart) => {
   }
 };
 
-const updateCartBadge = (cart) => {
+const updateCartBadge = () => {
   const badge = cart.querySelector(".count");
   const totalQuantity = cartState.reduce((acc, item) => acc + item.quantity, 0);
 
@@ -60,7 +62,7 @@ const updateCartBadge = (cart) => {
   }
 };
 
-const handleOpenCart = (cart) => {
+const handleOpenCart = () => {
   const dropdown = cart.querySelector(".cart__dropdown");
   dropdown.classList.toggle("open");
 
@@ -82,14 +84,14 @@ const handleOpenCart = (cart) => {
   document.addEventListener("click", handler);
 };
 
-const handleDeleteFromCart = (e, cart) => {
+const handleDeleteFromCart = (e) => {
   if (e.target.closest(".delete-btn")) {
     const id = +e.target.closest(".delete-btn").dataset.id;
     removeFromCart(id, cart);
   }
 };
 
-const handleCartQuantity = (e, cart) => {
+const handleCartQuantity = (e) => {
   if (e.target.closest(".quantity input")) {
     const id = +e.target.dataset.id;
     const product = cartState.find((p) => p.id === id);
@@ -107,7 +109,7 @@ const handleCartQuantity = (e, cart) => {
   }
 };
 
-const updateCartState = (cart) => {
+const updateCartState = () => {
   const cartProductsContainer = cart.querySelector(".cart__dropdown .products");
   const totalContainer = cart.querySelector(".cart__dropdown__footer .total");
 
@@ -154,20 +156,16 @@ const updateCartState = (cart) => {
   localStorage.setItem("cart", JSON.stringify(cartState));
 };
 
-export const setupCart = (productsContainer, cart) => {
+export const setupCart = (productsContainer) => {
   const cartBtn = cart.querySelector(".cart__label");
   const cartProductsContainer = cart.querySelector(".cart__dropdown .products");
 
   // Populate the cart on initial load
-  updateCartState(cart);
+  updateCartState();
 
   // Adding the listener to the parent instead of every child button
-  productsContainer.addEventListener("click", (e) => handleAddToCart(e, cart));
-  cartBtn.addEventListener("click", () => handleOpenCart(cart));
-  cartProductsContainer.addEventListener("click", (e) =>
-    handleDeleteFromCart(e, cart)
-  );
-  cartProductsContainer.addEventListener("change", (e) =>
-    handleCartQuantity(e, cart)
-  );
+  productsContainer.addEventListener("click", handleAddToCart);
+  cartBtn.addEventListener("click", handleOpenCart);
+  cartProductsContainer.addEventListener("click", handleDeleteFromCart);
+  cartProductsContainer.addEventListener("change", handleCartQuantity);
 };

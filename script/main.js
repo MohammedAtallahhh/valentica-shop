@@ -7,8 +7,8 @@ import { products } from "../productsData";
 import { setupCart } from "./cart";
 import { setupModal } from "./productModal";
 
+export const cart = document.querySelector(".header__nav__cart");
 const productsContainer = document.querySelector("#products .container");
-const cart = document.querySelector(".header__nav__cart");
 const productDetailsModal = document.querySelector(".product-details__modal");
 
 export const renderProducts = () => {
@@ -43,5 +43,5 @@ export const renderProducts = () => {
 };
 
 renderProducts();
-setupCart(productsContainer, cart);
-setupModal(productsContainer, productDetailsModal, cart);
+setupCart(productsContainer);
+setupModal(productsContainer, productDetailsModal);
