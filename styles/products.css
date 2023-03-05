@@ -41,8 +41,9 @@
 .product-card .card__info .btns {
   display: flex;
   justify-content: space-between;
+  gap: 0.5rem;
 }
 
 .remove-from-cart {
-  font-size: 1.4rem;
+  font-size: 1.2rem;
 }
