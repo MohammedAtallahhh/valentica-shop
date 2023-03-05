@@ -23,7 +23,7 @@
   background: white;
 
   border-radius: 1rem;
-  margin: 1rem 0;
+  margin: 5rem 0;
 
   width: 90%;
   max-width: 900px;
@@ -93,7 +93,6 @@
 @media (min-width: 768px) {
   .modal__inner {
     flex-direction: row;
-    margin: 5rem 0;
   }
 
   .modal__inner .product__image {
