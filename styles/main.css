@@ -110,6 +110,12 @@ button {
 .btn-secondary {
   background: none;
   color: #444;
+
+  transition: color 150ms ease-in-out;
+}
+
+.btn-secondary:hover {
+  color: #111;
 }
 
 .btn-danger {
